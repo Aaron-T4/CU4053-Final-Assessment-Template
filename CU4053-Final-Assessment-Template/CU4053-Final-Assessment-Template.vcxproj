@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Background.cpp" />
     <ClCompile Include="Candle\Color.cpp" />
     <ClCompile Include="Candle\Constants.cpp" />
     <ClCompile Include="Candle\DirectedLight.cpp" />
@@ -168,8 +169,11 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Background.h" />
     <ClInclude Include="Candle\Candle.hpp" />
     <ClInclude Include="Candle\Color.hpp" />
     <ClInclude Include="Candle\Constants.hpp" />
@@ -211,6 +215,8 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Level.h" />
+    <ClInclude Include="Mario.h" />
+    <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Framework\DO_NOT_EDIT.txt" />

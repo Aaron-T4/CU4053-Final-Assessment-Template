@@ -8,6 +8,22 @@ Level::Level(sf::RenderWindow* hwnd, Input* in, GameState* gs,sf::View* v, World
 	world = w;	
 	tileManager = tm;
 	audioManager = new AudioManager();
+
+	world->AddGameObject(zomb);
+
+	world->AddGameObject(mario);
+
+
+	mario.setInput(in);
+	zomb.setInput(in);
+	audioManager->addMusic("sfx/Cantina.ogg", "cantina");
+
+	audioManager->addSound("sfx/smb_jump-super.wav", "jump");
+
+	audioManager->playMusicbyName("cantina");
+
+	mario.setAudio(audioManager);
+
 }
 
 Level::~Level()
@@ -36,12 +52,32 @@ void Level::handleInput(float dt)
 		input->setKeyUp(sf::Keyboard::Tab);
 		gameState->setCurrentState(State::TILEEDITOR);
 	}
+
+
+	zomb.handleInput(dt);
+	mario.handleInput(dt);
 }
 
 // Update game objects
 void Level::update(float dt)
 {
+	bg.update(dt);
+	zomb.update(dt);
+	mario.update(dt);
 
+
+	view->setCenter(view->getCenter().x, 510);
+
+	sf::Vector2f playerPosition = mario.getPosition();
+	float newX = std::max(playerPosition.x, view->getSize().x / 2.0f);
+	view->setCenter(newX, view->getCenter().y);
+	window->setView(*view);
+
+
+	if (mario.CollisionWithTag("Collectable"))
+	{
+		tileManager->RemoveCollectable();
+	}
 	//Move the view to follow the player
 	//view->setCenter(view->getCenter().x, 360);
 	//
@@ -54,11 +90,17 @@ void Level::update(float dt)
 // Render level
 void Level::render()
 {
+
+	window->draw(bg);
+
 	if (gameState->getCurrentState() == State::LEVEL)
 	{
 		tileManager->render(false);
 	}
 
+	window->draw(zomb);
+
+	window->draw(mario);
 }
 
 

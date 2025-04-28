@@ -9,6 +9,9 @@
 #include "Framework/AudioManager.h"
 #include <string>
 #include <iostream>
+#include "Zombie.h"
+#include "Mario.h"
+#include "Background.h"
 
 class Level : public BaseLevel{
 public:
@@ -21,4 +24,8 @@ public:
 	void adjustViewToWindowSize(unsigned int width, unsigned int height);
 private:
 	// Default variables for level class.
+
+	Zombie zomb;
+	Mario mario;
+	Background bg;
 };
